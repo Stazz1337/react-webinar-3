@@ -6,8 +6,7 @@ import './styles.css';
  * @param store {Store} Хранилище состояния приложения
  * @returns {React.ReactElement}
  */
-function App ({ store }) {
- 
+function App({ store }) {
   const list = store.getState().list;
 
   return (
@@ -27,8 +26,17 @@ function App ({ store }) {
                 onClick={() => store.selectItem(item.code)}>
                 <div className='Item-code'>{item.code}</div>
                 <div className='Item-title'>
-                  {`${item.title} ${item.count > 0 ? `| Выделяли ${item.count} раз` : ''}`}
-              
+                  {`${item.title} ${
+                    item.count > 0
+                      ? `| Выделяли ${item.count} ${
+                          item.count % 10 >= 2 &&
+                          item.count % 10 <= 4 &&
+                          (item.count % 100 < 10 || item.count % 100 >= 20)
+                            ? 'раза'
+                            : 'раз'
+                        }`
+                      : ''
+                  }`}
                 </div>
                 <div className='Item-actions'>
                   <button onClick={() => store.deleteItem(item.code)}>Удалить</button>
