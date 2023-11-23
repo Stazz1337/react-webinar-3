@@ -66,6 +66,8 @@ class Store {
    * @param code
    */
   selectItem(code) {
+    const item = this.state.list.find((item) => item.code === code);
+    if (!item) return;
     this.setState({
       ...this.state,
       list: this.state.list.map((item) => {
