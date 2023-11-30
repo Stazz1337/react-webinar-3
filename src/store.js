@@ -1,4 +1,4 @@
-import {generateCode} from "./utils";
+import { generateCode } from "./utils";
 
 /**
  * Хранилище состояния приложения
@@ -18,8 +18,8 @@ class Store {
     this.listeners.push(listener);
     // Возвращается функция для удаления добавленного слушателя
     return () => {
-      this.listeners = this.listeners.filter(item => item !== listener);
-    }
+      this.listeners = this.listeners.filter((item) => item !== listener);
+    };
   }
 
   /**
@@ -46,9 +46,12 @@ class Store {
   addItem() {
     this.setState({
       ...this.state,
-      list: [...this.state.list, {code: generateCode(), title: 'Новая запись'}]
-    })
-  };
+      list: [
+        ...this.state.list,
+        { code: generateCode(), title: "Новая запись" },
+      ],
+    });
+  }
 
   /**
    * Удаление записи по коду
@@ -58,31 +61,53 @@ class Store {
     this.setState({
       ...this.state,
       // Новый список, в котором не будет удаляемой записи
-      list: this.state.list.filter(item => item.code !== code)
-    })
-  };
+      list: this.state.list.filter((item) => item.code !== code),
+    });
+  }
 
-  /**
-   * Выделение записи по коду
-   * @param code
-   */
-  selectItem(code) {
+  addToCart(code) {
+    const { list: cartList, total: cartTotal, quantity: cartQuantity } = this.state.cart;
+    const { list: itemList } = this.state;
+
+    const item = itemList.find(item => item.code === code);
+    const existingItem = cartList.find(item => item.code === code);
+
+    const newTotal = existingItem ? cartTotal - existingItem.price * existingItem.quantity + item.price * (existingItem.quantity + 1) : cartTotal + item.price;
+    const newQuantity = existingItem ? cartQuantity : cartQuantity + 1;
+
+    const newList = existingItem ? cartList.map(item => item.code === code ? { ...item, quantity: item.quantity + 1 } : item) : [...cartList, { ...item, quantity: 1 }];
+
     this.setState({
       ...this.state,
-      list: this.state.list.map(item => {
-        if (item.code === code) {
-          // Смена выделения и подсчёт
-          return {
-            ...item,
-            selected: !item.selected,
-            count: item.selected ? item.count : item.count + 1 || 1,
-          };
-        }
-        // Сброс выделения если выделена
-        return item.selected ? {...item, selected: false} : item;
-      })
-    })
-  }
+      cart: {
+        ...this.state.cart,
+        list: newList,
+        total: newTotal,
+        quantity: newQuantity,
+      },
+    });
+   }
+
+
+
+
+  removeFromCart(code) {
+    const { cart } = this.state;
+    const { list } = cart;
+
+    const newList = list.filter(item => item.code !== code);
+    const total = newList.reduce((total, item) => total + item.price * item.quantity, 0);
+
+    this.setState({
+      ...this.state,
+      cart: {
+        ...cart,
+        list: newList,
+        total,
+        quantity: newList.length,
+      },
+    });
+   }
 }
 
 export default Store;

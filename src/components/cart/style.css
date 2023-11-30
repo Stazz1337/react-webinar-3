@@ -1,0 +1,19 @@
+.Cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.Cart-content {
+  background-color: #fff;
+  margin: auto;
+  width: 50%;
+  border-radius: 10px;
+  overflow: hidden;
+}
