@@ -8,13 +8,13 @@ function Controls({ toggleCart, buttonText, quantity, total }) {
     <div className="Controls">
       <div className="Controls-info">
         {quantity > 0
-          ? `В корзине: ${quantity}
+          ? `В корзине: ${quantity.toLocaleString("ru-RU")}
             ${plural(quantity, {
               one: "товар",
               few: "товара",
               many: "товаров",
             })}
-            / ${total} ₽`
+            / ${total.toLocaleString("ru-RU")} ₽`
           : "В корзине пусто"}
       </div>
       <button onClick={() => toggleCart()}>{buttonText}</button>

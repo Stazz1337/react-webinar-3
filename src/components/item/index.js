@@ -15,7 +15,7 @@ function Item(props) {
       <div className="Item-code">{props.item.code}</div>
       <div className="Item-title">{props.item.title}</div>
 
-      <div className="Item-price">{props.item.price} ₽</div>
+      <div className="Item-price">{props.item.price.toLocaleString("ru-RU")} ₽</div>
       {props.isCartOpen && (
         <div className="Item-quantity">{props.item.quantity || 0} шт.</div>
       )}

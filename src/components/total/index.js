@@ -4,7 +4,7 @@ import "./style.css";
 function Total({ total }) {
   return (
     <div className="Total">
-      <p>Итого {total} ₽</p>
+      <p>Итого {total.toLocaleString("ru-RU")} ₽</p>
     </div>
   );
 }
