@@ -1,5 +1,18 @@
 .Total {
   display: flex;
   justify-content: flex-end;
-  padding: 20px;
+  align-items: center;
+  margin-right: 120px;
+}
+
+.Total-text {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  margin: 20px 0 90px 0;
+  width: 150px;
+}
+
+.Total-span {
+  text-align: right;
 }

@@ -1,26 +1,35 @@
-.Item {
+.ItemCart {
   display: flex;
   justify-content: flex-start;
   transition: background-color 1s;
 }
 
-.Item-code {
+.ItemCart-code {
   margin: 20px 10px 20px 20px;
 }
 
-.Item-title {
+.ItemCart-title {
   width: 100%;
   margin: 20px 10px;
 }
 
-.Item-price {
-  width: 160px;
-  margin: 20px 20px;
+.ItemCart-quantity {
+  width: 180px;
+  margin: 20px 10px 25px 0;
+  text-align: right;
+}
+.ItemCart-price {
+  width: 190px;
+  margin: 20px 0;
   text-align: right;
 }
 
-.Item-actions {
+.ItemCart-actions {
   display: flex;
   justify-content: flex-end;
   margin: 20px 20px 20px 10px;
+}
+
+.ItemCart-button {
+  width: 76px;
 }

@@ -7,3 +7,15 @@
 .Controls-info {
   margin-right: 20px;
 }
+
+.Controls-button {
+  width: 80px;
+}
+
+.Controls-span {
+  font-size: 18px;
+}
+
+.Controls-span-bold {
+  font-weight: 700;
+}

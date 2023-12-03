@@ -2,18 +2,26 @@ import React from "react";
 import PropTypes from "prop-types";
 import Item from "../item";
 import "./style.css";
+import ItemCart from "../item-cart";
 
 function List({ list, onClickButton, buttonText, isCartOpen }) {
   return (
     <div className="List">
       {list.map((item) => (
         <div key={item.code} className="List-item">
-          <Item
-            item={item}
-            onClickButton={onClickButton}
-            buttonText={buttonText}
-            isCartOpen={isCartOpen}
-          />
+          {isCartOpen ? (
+            <ItemCart
+              item={item}
+              onClickButton={onClickButton}
+              buttonText={buttonText}
+            />
+          ) : (
+            <Item
+              item={item}
+              onClickButton={onClickButton}
+              buttonText={buttonText}
+            />
+          )}
         </div>
       ))}
     </div>

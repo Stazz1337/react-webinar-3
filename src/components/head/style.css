@@ -13,4 +13,6 @@
 
 .Head button {
   height: 20px;
+  width: 76px;
+  transform: translateX(-10px);
 }
